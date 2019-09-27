@@ -2,8 +2,10 @@ import pandas as pd
 import csv
 import numpy as np
 import math
-from sklearn import preprocessing,cross_validation, svm
+from sklearn import preprocessing, svm
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import cross_validate
+from sklearn.model_selection import train_test_split
 
 filename = 'AMZN.csv'
 data = pd.read_csv(filename)
@@ -27,7 +29,7 @@ x = preprocessing.scale(X)
 y=np.array(data['label'])
 
 
-X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 classifier = LinearRegression()
 classifier.fit(X_train, y_train)
